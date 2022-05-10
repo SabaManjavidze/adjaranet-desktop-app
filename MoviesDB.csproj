@@ -94,6 +94,9 @@
     <Compile Include="MovieDetails.Designer.cs">
       <DependentUpon>MovieDetails.cs</DependentUpon>
     </Compile>
+    <Compile Include="MovieDetailsModel.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Movies.cs" />
     <Compile Include="Pagination.cs" />
     <Compile Include="Program.cs" />

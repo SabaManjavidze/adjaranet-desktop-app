@@ -184,7 +184,6 @@ namespace MoviesDB
 
             Movie movies = api.GetAdjaraMovies(newstr);
             api.LoadAdjaraReq(movies.data);
-            MediaTypeCount();
         }
 
         private void search_textBox_KeyDown(object sender, KeyEventArgs e)
@@ -203,7 +202,6 @@ namespace MoviesDB
                     MoviesLbl.Visible = true;
                     tvLbl.Visible = true;
                     AllLbl.Visible = true;
-                    MediaTypeCount();
                     Meta total_pages = (api.GetAdjaraMovies(url) as Movie).meta;
                     if (total_pages.pagination.total_pages<=10)
                     {
@@ -222,83 +220,6 @@ namespace MoviesDB
                     HomePage();
                 }
                 flowLayoutPanel2.Controls[0].BackColor = Color.FromArgb(40, 16, 78);
-            }
-        }
-        public void MediaTypeCount()
-        {
-            delPrevLbl("tvShowCount");
-            delPrevLbl("movieCount");
-            delPrevLbl("AllCount");
-            Label lbl = new Label()
-            {
-                Location = new Point(tvLbl.Location.X + 30, tvLbl.Location.Y + 30),
-                Anchor = AnchorStyles.Bottom,
-                Font = new Font("", 15),
-                Name = "tvShowCount",
-                AutoSize = false,
-                Dock =DockStyle.Fill,
-                TextAlign = ContentAlignment.MiddleCenter
-            };
-            lbl.ForeColor = ThemeCB.Checked?Color.Silver:Color.FromArgb(60, 65, 70);
-            MediaTypePnl.Controls.Add(lbl);
-            Label movieLbl = new Label()
-            {
-                Location = new Point(MoviesLbl.Location.X + 20, MoviesLbl.Location.Y + 30),
-                Anchor = AnchorStyles.Bottom,
-                Font = new Font("", 15),
-                Name = "movieCount",
-                AutoSize = false,
-                Dock = DockStyle.Fill,
-                TextAlign = ContentAlignment.MiddleCenter
-            };
-            movieLbl.ForeColor = ThemeCB.Checked ? Color.Silver : Color.FromArgb(60, 65, 70); 
-            MediaTypePnl.Controls.Add(movieLbl);
-            int allCount = 0;
-            Label all_lbl = new Label()
-            {
-                Location = new Point(AllLbl.Location.X + 7, AllLbl.Location.Y + 30),
-                Anchor= AnchorStyles.Bottom,
-                ForeColor = Color.Silver,
-                Font = new Font("", 15),
-                Name = "AllCount",
-                AutoSize = false,
-                Dock = DockStyle.Fill,
-                TextAlign = ContentAlignment.MiddleCenter
-            };
-            all_lbl.ForeColor = ThemeCB.Checked ? Color.Silver : Color.FromArgb(60, 65, 70); 
-            MediaTypePnl.Controls.Add(all_lbl);
-            int tvCount = 0;
-            int movieCount = 0;
-            for (int i = 0; i < flowLayoutPanel1.Controls.Count; i++)
-            {
-                if (flowLayoutPanel1.Controls[i].Enabled == true)
-                {
-                    if (flowLayoutPanel1.Controls[i].Visible == true)
-                    {
-                        allCount++;
-                        all_lbl.Text = allCount.ToString();
-                    }
-                    if (flowLayoutPanel1.Controls[i].Name.ToLower() =="true")
-                    {
-                        tvCount++;
-                        lbl.Text = tvCount.ToString();
-                    }
-                    else if (flowLayoutPanel1.Controls[i].Name.ToLower() == "false")
-                    {
-                        movieCount++;
-                        movieLbl.Text = movieCount.ToString();
-                    }
-                }
-            }
-            lbl.Text = lbl.Text == "" ? "0" : lbl.Text;
-            movieLbl.Text = movieLbl.Text == ""? "0": movieLbl.Text;
-        }
-        public void delPrevLbl(string name)
-        {
-            var prevlbl = MediaTypePnl.Controls.Find(name, false);
-            if (prevlbl.Length > 0)
-            {
-                prevlbl[0].Dispose();
             }
         }
         private void MoviesLbl_Click(object sender, EventArgs e)
@@ -550,7 +471,6 @@ namespace MoviesDB
             Movie movies = api.GetAdjaraMovies(url);
             //var omovies = movies.OrderBy(m => m.watchCount).Reverse();
             api.LoadAdjaraReq(movies.data);
-            MediaTypeCount();
             Paging(5);
             DiscoverStateLbl.Text = "Most Popular";
             flowLayoutPanel2.Controls[0].BackColor = Properties.Settings.Default.DarkTheme ? Color.FromArgb(40, 16, 78): Color.FromArgb(22, 131, 198);

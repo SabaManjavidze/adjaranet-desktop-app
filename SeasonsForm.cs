@@ -196,14 +196,14 @@ namespace MoviesDB
             EpisodeNumLbl.Text = (index + 1).ToString();
             for (int i = 0; i < currEpisodesData[index].files.Count; i++)
             {
-                file file = JsonConvert.DeserializeObject<file>(currEpisodesData[index].files[i].ToString());
-                if (file.lang == "ENG")
+                File file = JsonConvert.DeserializeObject<File>(currEpisodesData[index].files[i].ToString());
+                if (file.Lang == "ENG")
                 {
-                    for (int j = 0; j < file.files.Count; j++)
+                    for (int j = 0; j < file.Files.Count; j++)
                     {
-                        if (file.files[j]["quality"].Value == "HIGH")
+                        if (file.Files[j]["quality"].Value == "HIGH")
                         {
-                            movie_details.changeVideoUrl(file.files[j]["src"].Value);
+                            movie_details.changeVideoUrl(file.Files[j]["src"].Value);
                             return;
                         }
                     }

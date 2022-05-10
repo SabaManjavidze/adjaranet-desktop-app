@@ -14,19 +14,14 @@ using System.Windows.Forms;
 
 namespace MoviesDB
 {
-    public partial class MovieDetails : Form
+    public partial class MovieDetails : MovieDetailsModel 
     {
-        public string title { get; set; }
-        public string genres { get; set; }
-        public int id { get; set; }
-        public string poster { get; set; }
-        public string desc { get; set; }
-        public string release_date { get; set; }
-        public string adjara_url { get; set; }
-        public string vid_url { get; set; }
-        public dynamic seasonData { get; set; }
-
         string base_url = "https://www.adjaranet.com/movies/";
+        double FULL_SPEED = 2;
+        double HALF_SPEED = 1.5;
+        double NORMAL_SPEED = 1;
+        double CURR_SPEED = 1;
+
         //Control[] controls;
         public MovieDetails()
         {
@@ -95,6 +90,28 @@ namespace MoviesDB
                     player.Focus();
                 }
             }
+            if (e.nKeyCode == 71)
+            {
+                if (CURR_SPEED == HALF_SPEED)
+                {
+                    CURR_SPEED=player.settings.rate = NORMAL_SPEED;
+                }
+                else
+                {
+                    CURR_SPEED=player.settings.rate = HALF_SPEED;
+                }
+            }
+            if (e.nKeyCode == 72)
+            {
+                if (CURR_SPEED == FULL_SPEED)
+                {
+                     CURR_SPEED = player.settings.rate = NORMAL_SPEED;
+                }
+                else
+                {
+                     CURR_SPEED = player.settings.rate = FULL_SPEED;
+                }
+            }
             if (e.nKeyCode == 32)
             {
                 if (player.playState == WMPLib.WMPPlayState.wmppsPlaying)
@@ -108,12 +125,11 @@ namespace MoviesDB
                     player.Focus();
                 }
             }
-            if (e.nKeyCode == 39)
+            if (e.nKeyCode == 65)
             {
-                MessageBox.Show(player.Ctlcontrols.currentPosition.ToString());
-                player.Ctlcontrols.currentPosition += 5;
+                player.Ctlcontrols.currentPosition -= 5;
             }
-            else if (e.nKeyCode == 37)
+            else if (e.nKeyCode == 68)
             {
                 player.Ctlcontrols.currentPosition += 5;
             }

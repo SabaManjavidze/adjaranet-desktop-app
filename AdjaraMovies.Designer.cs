@@ -42,9 +42,12 @@ namespace MoviesDB
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.ThemeCB = new System.Windows.Forms.CheckBox();
             this.MediaTypePnl = new System.Windows.Forms.TableLayoutPanel();
-            this.AllLbl = new System.Windows.Forms.Label();
             this.tvLbl = new System.Windows.Forms.Label();
             this.MoviesLbl = new System.Windows.Forms.Label();
+            this.AllLbl = new System.Windows.Forms.Label();
+            this.AllCountLbl = new System.Windows.Forms.Label();
+            this.MovieCountLbl = new System.Windows.Forms.Label();
+            this.TvCountLbl = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.MediaTypePnl.SuspendLayout();
             this.SuspendLayout();
@@ -67,11 +70,11 @@ namespace MoviesDB
             this.search_textBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.search_textBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(16)))), ((int)(((byte)(68)))));
             this.search_textBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.search_textBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F);
+            this.search_textBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.search_textBox.ForeColor = System.Drawing.Color.White;
-            this.search_textBox.Location = new System.Drawing.Point(1088, 15);
+            this.search_textBox.Location = new System.Drawing.Point(1081, 23);
             this.search_textBox.Name = "search_textBox";
-            this.search_textBox.Size = new System.Drawing.Size(222, 46);
+            this.search_textBox.Size = new System.Drawing.Size(222, 31);
             this.search_textBox.TabIndex = 1;
             this.search_textBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.search_textBox_KeyDown);
             // 
@@ -99,9 +102,9 @@ namespace MoviesDB
             this.listBox1.Items.AddRange(new object[] {
             "Most Popular",
             "Top Rated"});
-            this.listBox1.Location = new System.Drawing.Point(925, 67);
+            this.listBox1.Location = new System.Drawing.Point(924, 67);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(144, 75);
+            this.listBox1.Size = new System.Drawing.Size(144, 50);
             this.listBox1.TabIndex = 5;
             this.listBox1.Visible = false;
             this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
@@ -219,6 +222,9 @@ namespace MoviesDB
             this.MediaTypePnl.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.MediaTypePnl.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33334F));
             this.MediaTypePnl.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33334F));
+            this.MediaTypePnl.Controls.Add(this.TvCountLbl, 2, 1);
+            this.MediaTypePnl.Controls.Add(this.MovieCountLbl, 1, 1);
+            this.MediaTypePnl.Controls.Add(this.AllCountLbl, 0, 1);
             this.MediaTypePnl.Controls.Add(this.tvLbl, 2, 0);
             this.MediaTypePnl.Controls.Add(this.MoviesLbl, 1, 0);
             this.MediaTypePnl.Controls.Add(this.AllLbl, 0, 0);
@@ -229,18 +235,6 @@ namespace MoviesDB
             this.MediaTypePnl.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 43F));
             this.MediaTypePnl.Size = new System.Drawing.Size(309, 85);
             this.MediaTypePnl.TabIndex = 14;
-            // 
-            // AllLbl
-            // 
-            this.AllLbl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.AllLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
-            this.AllLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(51)))), ((int)(((byte)(212)))));
-            this.AllLbl.Location = new System.Drawing.Point(3, 0);
-            this.AllLbl.Name = "AllLbl";
-            this.AllLbl.Size = new System.Drawing.Size(96, 48);
-            this.AllLbl.TabIndex = 17;
-            this.AllLbl.Text = "ALL";
-            this.AllLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tvLbl
             // 
@@ -265,6 +259,60 @@ namespace MoviesDB
             this.MoviesLbl.TabIndex = 15;
             this.MoviesLbl.Text = "Movies";
             this.MoviesLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // AllLbl
+            // 
+            this.AllLbl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.AllLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
+            this.AllLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(51)))), ((int)(((byte)(212)))));
+            this.AllLbl.Location = new System.Drawing.Point(3, 0);
+            this.AllLbl.Name = "AllLbl";
+            this.AllLbl.Size = new System.Drawing.Size(96, 48);
+            this.AllLbl.TabIndex = 17;
+            this.AllLbl.Text = "ALL";
+            this.AllLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // AllCountLbl
+            // 
+            this.AllCountLbl.AutoSize = true;
+            this.AllCountLbl.BackColor = System.Drawing.Color.Transparent;
+            this.AllCountLbl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.AllCountLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AllCountLbl.ForeColor = System.Drawing.Color.White;
+            this.AllCountLbl.Location = new System.Drawing.Point(3, 48);
+            this.AllCountLbl.Name = "AllCountLbl";
+            this.AllCountLbl.Size = new System.Drawing.Size(96, 37);
+            this.AllCountLbl.TabIndex = 19;
+            this.AllCountLbl.Text = "0";
+            this.AllCountLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // MovieCountLbl
+            // 
+            this.MovieCountLbl.AutoSize = true;
+            this.MovieCountLbl.BackColor = System.Drawing.Color.Transparent;
+            this.MovieCountLbl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.MovieCountLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MovieCountLbl.ForeColor = System.Drawing.Color.White;
+            this.MovieCountLbl.Location = new System.Drawing.Point(105, 48);
+            this.MovieCountLbl.Name = "MovieCountLbl";
+            this.MovieCountLbl.Size = new System.Drawing.Size(97, 37);
+            this.MovieCountLbl.TabIndex = 20;
+            this.MovieCountLbl.Text = "0";
+            this.MovieCountLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // TvCountLbl
+            // 
+            this.TvCountLbl.AutoSize = true;
+            this.TvCountLbl.BackColor = System.Drawing.Color.Transparent;
+            this.TvCountLbl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TvCountLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TvCountLbl.ForeColor = System.Drawing.Color.White;
+            this.TvCountLbl.Location = new System.Drawing.Point(208, 48);
+            this.TvCountLbl.Name = "TvCountLbl";
+            this.TvCountLbl.Size = new System.Drawing.Size(98, 37);
+            this.TvCountLbl.TabIndex = 21;
+            this.TvCountLbl.Text = "0";
+            this.TvCountLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // AdjaraMovies
             // 
@@ -294,6 +342,7 @@ namespace MoviesDB
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.MediaTypePnl.ResumeLayout(false);
+            this.MediaTypePnl.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -315,6 +364,9 @@ namespace MoviesDB
         private System.Windows.Forms.Label tvLbl;
         private System.Windows.Forms.Label MoviesLbl;
         private System.Windows.Forms.Label AllLbl;
+        public System.Windows.Forms.Label TvCountLbl;
+        public System.Windows.Forms.Label MovieCountLbl;
+        public System.Windows.Forms.Label AllCountLbl;
     }
 }
 

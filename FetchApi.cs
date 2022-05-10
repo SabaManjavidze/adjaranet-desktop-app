@@ -63,10 +63,15 @@ namespace MoviesDB
         }
         public void LoadAdjaraReq(Data[] movies)
         {
-            WebClient wc = new WebClient();
-            byte[] bytes = wc.DownloadData("https://cdn.discordapp.com/attachments/851501058282750013/860541285243551794/notFound.png");
-            MemoryStream ms = new MemoryStream(bytes);
-            Image img = Image.FromStream(ms);
+            /*            WebClient wc = new WebClient();
+                        byte[] bytes = wc.DownloadData("https://cdn.discordapp.com/attachments/851501058282750013/860541285243551794/notFound.png");
+                        MemoryStream ms = new MemoryStream(bytes);
+                        Image img = Image.FromStream(ms);
+            */
+            main_form.AllCountLbl.Text = movies.Length + "";
+            main_form.MovieCountLbl.Text = "0";
+            main_form.TvCountLbl.Text = "0";
+            
             for (int i = 0; i < movies.Length; i++)
             {
                 if (movies[i].adjaraId != null)
@@ -75,7 +80,7 @@ namespace MoviesDB
                     {
                         SizeMode = PictureBoxSizeMode.StretchImage,
                         Size = new Size(250, 375),
-                        ErrorImage = img,
+                        /*ErrorImage = img,*/
                         Name = movies[i].adjaraId
                     };
                     if (!string.IsNullOrEmpty(movies[i].posters["data"]["240"].Value))
@@ -84,7 +89,15 @@ namespace MoviesDB
                     }
                     else
                     {
-                        pic.Image = img;
+                        pic.Image = null;
+                    }
+                    if (movies[i].isTvShow)
+                    {
+                        main_form.TvCountLbl.Text = (int.Parse(main_form.TvCountLbl.Text)+1)+"";
+                    }
+                    else
+                    {
+                        main_form.MovieCountLbl.Text =(int.Parse(main_form.MovieCountLbl.Text)+1)+"";
                     }
                     pic.Click += Pic_Click;
                     Label lbl = new Label()
